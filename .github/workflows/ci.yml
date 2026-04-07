@@ -53,7 +53,7 @@ jobs:
           python -c "from app import app; print('FastAPI app loads OK')"
 
       - name: Upload model artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: trained-model
           path: backend/model.pkl
