@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ModelOps — Churn Predictor</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Syne (display) + DM Mono (inputs) -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Background decorative blobs -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <main class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="badge">ML Pipeline v1.0</div>
+      <h1 class="title">ModelOps</h1>
+      <p class="subtitle">Bank Customer Churn Predictor</p>
+    </header>
+
+    <!-- Prediction Card -->
+    <div class="card" id="predictionCard">
+
+      <div class="card-label">Customer Data Input</div>
+
+      <!-- Input Fields -->
+      <div class="fields">
+
+        <div class="field-group">
+          <label for="age">
+            <span class="label-icon">◈</span> Age
+          </label>
+          <input
+            type="number"
+            id="age"
+            placeholder="e.g. 35"
+            min="18"
+            max="100"
+            required
+          />
+          <span class="hint">Customer age in years</span>
+        </div>
+
+        <div class="field-group">
+          <label for="balance">
+            <span class="label-icon">◈</span> Account Balance
+          </label>
+          <input
+            type="number"
+            id="balance"
+            placeholder="e.g. 50000"
+            min="0"
+            step="0.01"
+            required
+          />
+          <span class="hint">Balance in account (USD)</span>
+        </div>
+
+        <div class="field-group">
+          <label for="creditScore">
+            <span class="label-icon">◈</span> Credit Score
+          </label>
+          <input
+            type="number"
+            id="creditScore"
+            placeholder="e.g. 700"
+            min="300"
+            max="900"
+            required
+          />
+          <span class="hint">Score between 300–900</span>
+        </div>
+
+      </div>
+
+      <!-- Predict Button -->
+      <button class="predict-btn" id="predictBtn" onclick="predict()">
+        <span class="btn-text">Run Prediction</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <!-- Loading State -->
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <span>Running model inference...</span>
+      </div>
+
+      <!-- Result Box -->
+      <div class="result-box" id="resultBox">
+        <div class="result-label">Prediction Result</div>
+        <div class="result-value" id="resultText">—</div>
+        <div class="result-meta" id="resultMeta"></div>
+      </div>
+
+    </div>
+
+    <!-- Footer note -->
+    <footer class="footer">
+      <span>Powered by</span>
+      <span class="tech-badge">FastAPI</span>
+      <span class="tech-badge">scikit-learn</span>
+      <span class="tech-badge">Logistic Regression</span>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
