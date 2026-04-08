@@ -1,25 +1,17 @@
-# ============================================================
-# .github/workflows/ci.yml
-# GitHub Actions CI/CD Pipeline
-#
-# Pipeline Flow (matches project architecture diagram):
-#   GitHub Push → Install → Test → Train Model → Docker Build
-#
-# This workflow runs automatically on every push to GitHub.
-# ============================================================
+
 
 name: ModelOps CI/CD Pipeline
 
 on:
   push:
     branches:
-      - "**"   # Trigger on push to any branch
+      - "**"   
 
 jobs:
 
-  # ============================================================
+  
   # JOB 1: Install dependencies and train the ML model
-  # ============================================================
+
   train-model:
     name: Install and Train Model
     runs-on: ubuntu-latest
@@ -59,9 +51,9 @@ jobs:
           path: backend/model.pkl
           retention-days: 7
 
-  # ============================================================
+  
   # JOB 2: Build Docker image (runs only after Job 1 passes)
-  # ============================================================
+
   docker-build:
     name: Docker Image Build
     runs-on: ubuntu-latest
@@ -95,13 +87,3 @@ jobs:
           docker stop modelops-test
           echo "Docker container test complete"
 
-# ============================================================
-# HOW THIS MAPS TO THE PDF ARCHITECTURE:
-#
-# GitHub Commit
-#     -> GitHub Actions (Build -> Test -> Train -> Docker Build)
-#     -> Docker Image Updated
-#     -> (In production) Push to Amazon ECR -> ECS/EC2 deploy
-#     -> API Gateway routes traffic to running container
-#     -> CloudWatch monitors logs and performance
-# ============================================================
